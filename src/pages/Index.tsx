@@ -2,86 +2,116 @@ import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
-  { label: "Направления", href: "#directions" },
-  { label: "О школе", href: "#about" },
+  { label: "Курсы", href: "#directions" },
   { label: "Преподаватели", href: "#teachers" },
-  { label: "Достижения", href: "#achievements" },
-  { label: "Тарифы", href: "#pricing" },
   { label: "Отзывы", href: "#reviews" },
-  { label: "Контакты", href: "#contacts" },
 ];
 
 const DIRECTIONS = [
-  { emoji: "🤖", title: "Scratch и создание игр", age: "7–10 лет", color: "#8b7bb8", bg: "#f0ecfa", desc: "Дети создают анимации и игры в визуальной среде Scratch без единой строчки кода" },
-  { emoji: "🐍", title: "Python для начинающих", age: "10–14 лет", color: "#6cbfb0", bg: "#e8f7f5", desc: "Первый настоящий язык программирования — учимся решать задачи и писать скрипты" },
-  { emoji: "🌐", title: "Web-разработка", age: "12–16 лет", color: "#e887ae", bg: "#fdf0f5", desc: "HTML, CSS и JavaScript — создаём сайты и приложения с нуля" },
-  { emoji: "🧠", title: "Искусственный интеллект", age: "14–17 лет", color: "#c9a84c", bg: "#fdf8ec", desc: "Обучаем нейросети, работаем с данными и строим умные системы" },
-  { emoji: "🎮", title: "Unity — разработка игр", age: "13–17 лет", color: "#8b7bb8", bg: "#f0ecfa", desc: "Профессиональная разработка 2D/3D игр на движке Unity и C#" },
-  { emoji: "🔧", title: "Робототехника", age: "8–13 лет", color: "#6cbfb0", bg: "#e8f7f5", desc: "Собираем и программируем роботов — от простых конструкций до сложных механизмов" },
+  {
+    tag: "7–10 лет",
+    title: "Scratch",
+    subtitle: "Создание игр и анимаций",
+    desc: "Дети создают собственные игры и мультфильмы без строчки кода — через блоки и логику",
+    color: "#FFD600",
+    icon: "🎮",
+  },
+  {
+    tag: "10–14 лет",
+    title: "Python",
+    subtitle: "Программирование с нуля",
+    desc: "Первый настоящий язык: пишем программы, решаем задачи, делаем первые проекты",
+    color: "#3DFFD0",
+    icon: "🐍",
+  },
+  {
+    tag: "12–16 лет",
+    title: "Web",
+    subtitle: "Сайты и приложения",
+    desc: "HTML, CSS, JavaScript — создаём настоящие сайты, которые работают в интернете",
+    color: "#FF6B9D",
+    icon: "🌐",
+  },
+  {
+    tag: "14–17 лет",
+    title: "AI & Data",
+    subtitle: "Искусственный интеллект",
+    desc: "Машинное обучение, нейросети, работа с данными — профессии будущего уже сегодня",
+    color: "#FFD600",
+    icon: "🧠",
+  },
+  {
+    tag: "13–17 лет",
+    title: "Unity",
+    subtitle: "Разработка игр 2D/3D",
+    desc: "Создаём игры на профессиональном движке Unity — от идеи до готового продукта",
+    color: "#3DFFD0",
+    icon: "🕹️",
+  },
+  {
+    tag: "8–13 лет",
+    title: "Роботы",
+    subtitle: "Робототехника",
+    desc: "Собираем и программируем роботов — соединяем физику, механику и код",
+    color: "#FF6B9D",
+    icon: "🤖",
+  },
 ];
 
 const TEACHERS = [
-  { name: "Алексей Громов", role: "Основатель, Python & AI", exp: "8 лет опыта", emoji: "👨‍💻" },
-  { name: "Марина Светлова", role: "Scratch & Геймдизайн", exp: "5 лет опыта", emoji: "👩‍🎨" },
-  { name: "Дмитрий Козлов", role: "Web & Frontend", exp: "6 лет опыта", emoji: "👨‍🚀" },
-  { name: "Ольга Нечаева", role: "Робототехника", exp: "4 года опыта", emoji: "👩‍🔬" },
+  { name: "Алексей Громов", role: "Python & AI", exp: "8 лет", emoji: "👨‍💻" },
+  { name: "Марина Светлова", role: "Scratch & Дизайн", exp: "5 лет", emoji: "👩‍🎨" },
+  { name: "Дмитрий Козлов", role: "Web & Frontend", exp: "6 лет", emoji: "👨‍🚀" },
+  { name: "Ольга Нечаева", role: "Робототехника", exp: "4 года", emoji: "👩‍🔬" },
 ];
 
 const ACHIEVEMENTS = [
-  { num: "1200+", label: "выпускников", emoji: "🎓" },
-  { num: "47", label: "наград на олимпиадах", emoji: "🏆" },
-  { num: "96%", label: "родителей рекомендуют нас", emoji: "❤️" },
-  { num: "5 лет", label: "на рынке образования", emoji: "⭐" },
+  { num: "1200+", label: "выпускников" },
+  { num: "47", label: "наград на олимпиадах" },
+  { num: "96%", label: "рекомендуют нас" },
+  { num: "5 лет", label: "на рынке" },
 ];
 
 const PRICING = [
   {
-    name: "Старт",
+    name: "СТАРТ",
     price: "3 900",
-    color: "#8b7bb8",
-    bg: "#f0ecfa",
     features: ["4 занятия в месяц", "1 час каждое", "Онлайн или очно", "Доступ к материалам"],
-    popular: false,
+    highlight: false,
   },
   {
-    name: "Прогресс",
+    name: "ПРОГРЕСС",
     price: "6 900",
-    color: "#6cbfb0",
-    bg: "#e8f7f5",
     features: ["8 занятий в месяц", "1.5 часа каждое", "Онлайн или очно", "Домашние задания", "Отчёты для родителей"],
-    popular: true,
+    highlight: true,
   },
   {
-    name: "Профи",
+    name: "ПРОФИ",
     price: "11 900",
-    color: "#e887ae",
-    bg: "#fdf0f5",
-    features: ["Безлимит занятий", "Индивидуальный план", "Менторство 1 на 1", "Подготовка к олимпиадам", "Портфолио проектов"],
-    popular: false,
+    features: ["Безлимит занятий", "Индивидуальный план", "Менторство 1 на 1", "Подготовка к олимпиадам", "Портфолио"],
+    highlight: false,
   },
 ];
 
 const REVIEWS = [
-  { name: "Светлана К.", child: "сын 11 лет", text: "Максим за 3 месяца сделал свою первую игру! Он был так горд — показывал всем одноклассникам. Спасибо Квантастике!", rating: 5 },
-  { name: "Андрей В.", child: "дочь 13 лет", text: "Прошли уже два курса — Scratch и Python. Учителя замечательные, всегда объясняют понятно и с энтузиазмом.", rating: 5 },
-  { name: "Наталья М.", child: "сын 9 лет", text: "Никита сначала не хотел идти, думал что скучно. Теперь сам просит дополнительные уроки! Магия какая-то.", rating: 5 },
-  { name: "Игорь Р.", child: "дочь 15 лет", text: "Настя выиграла региональную олимпиаду по программированию. Без Квантастики это было бы невозможно.", rating: 5 },
+  { name: "Светлана К.", child: "сын, 11 лет", text: "Максим за 3 месяца сделал свою первую игру! Показывал всем одноклассникам. Невероятно горжусь." },
+  { name: "Андрей В.", child: "дочь, 13 лет", text: "Прошли два курса — Scratch и Python. Учителя объясняют понятно, ребёнок в восторге." },
+  { name: "Наталья М.", child: "сын, 9 лет", text: "Никита сначала не хотел идти. Теперь сам просит дополнительные уроки. Магия какая-то!" },
+  { name: "Игорь Р.", child: "дочь, 15 лет", text: "Настя выиграла региональную олимпиаду по программированию. Без Квантастики это было бы невозможно." },
 ];
 
-const FLOATING = ["⭐", "🚀", "💡", "🎯", "🔮", "⚡", "🌟", "🎮"];
+const MARQUEE_ITEMS = [
+  "Научим вашего ребёнка создавать игры, сайты и приложения с нуля",
+  "Научим вашего ребёнка создавать игры, сайты и приложения с нуля",
+  "Научим вашего ребёнка создавать игры, сайты и приложения с нуля",
+  "Научим вашего ребёнка создавать игры, сайты и приложения с нуля",
+];
 
 export default function Index() {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatForm, setChatForm] = useState({ name: "", phone: "", question: "" });
   const [chatSent, setChatSent] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,164 +123,219 @@ export default function Index() {
     setMenuOpen(false);
   };
 
-  return (
-    <div className="min-h-screen font-nunito bg-white overflow-x-hidden">
+  type Dot = { top: string; left?: string; right?: string; size: number; color: string };
+  const dots: Dot[] = [
+    { top: "22%", left: "54%", size: 10, color: "#FFD600" },
+    { top: "65%", left: "8%", size: 8, color: "#FFD600" },
+    { top: "80%", left: "92%", size: 6, color: "#3DFFD0" },
+    { top: "40%", right: "5%", size: 7, color: "#FFD600" },
+  ];
 
-      {/* NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
-          <a href="#" className="flex items-center gap-2">
-            <span className="text-2xl animate-wiggle inline-block">🧠</span>
-            <span className="font-russo text-xl text-q-purple tracking-wider uppercase">Квантастика</span>
-          </a>
-          <div className="hidden lg:flex items-center gap-6">
-            {NAV_LINKS.map(l => (
-              <button key={l.href} onClick={() => scrollTo(l.href)}
-                className="text-sm font-bold text-gray-600 hover:text-q-violet transition-colors relative group">
-                {l.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-q-teal rounded-full transition-all duration-200 group-hover:w-full" />
+  return (
+    <div className="min-h-screen overflow-x-hidden" style={{ background: "var(--q-bg)", fontFamily: "'Russo One', sans-serif" }}>
+
+      {/* ── NAVBAR ── */}
+      <nav style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
+        css-bg="rgba(26,21,96,0.95)">
+        <div style={{ background: "rgba(26,21,96,0.97)" }}>
+          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+            {/* Logo */}
+            <a href="#" className="font-russo text-2xl tracking-[0.2em] uppercase"
+              style={{ color: "var(--q-yellow)", letterSpacing: "0.15em" }}>
+              КВАНТАСТИКА
+            </a>
+
+            {/* Nav links */}
+            <div className="hidden lg:flex items-center gap-10">
+              {NAV_LINKS.map(l => (
+                <button key={l.href} onClick={() => scrollTo(l.href)}
+                  className="text-white/80 hover:text-white transition-colors font-nunito font-bold text-sm tracking-wider uppercase">
+                  {l.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Right: phones + button */}
+            <div className="hidden lg:flex items-center gap-8">
+              <div className="font-nunito text-right text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <div>Отдел продаж: <span className="text-white font-bold">+7 (981) 962-15-85</span></div>
+                <div>Звонок в школу: <span className="text-white font-bold">+7 (495) 148-58-11</span></div>
+              </div>
+              <button onClick={() => setChatOpen(true)}
+                className="btn-outline px-6 py-3 text-sm tracking-wider">
+                ВОЙТИ <Icon name="ArrowRight" size={16} />
               </button>
-            ))}
-            <button onClick={() => setChatOpen(true)} className="btn-primary px-5 py-2.5 text-sm">
-              Записаться
+            </div>
+
+            <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-white p-2">
+              <Icon name={menuOpen ? "X" : "Menu"} size={24} />
             </button>
           </div>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 text-q-purple">
-            <Icon name={menuOpen ? "X" : "Menu"} size={24} />
-          </button>
         </div>
+
         {menuOpen && (
-          <div className="lg:hidden bg-white border-t border-q-light px-4 pb-4 space-y-2 shadow-lg">
+          <div style={{ background: "var(--q-bg2)", borderTop: "1px solid rgba(255,255,255,0.1)" }}
+            className="lg:hidden px-6 pb-6 space-y-4">
             {NAV_LINKS.map(l => (
               <button key={l.href} onClick={() => scrollTo(l.href)}
-                className="block w-full text-left py-2 font-bold text-gray-700 hover:text-q-violet">
+                className="block w-full text-left py-2 text-white font-nunito font-bold tracking-wider uppercase">
                 {l.label}
               </button>
             ))}
             <button onClick={() => { setMenuOpen(false); setChatOpen(true); }}
-              className="btn-primary w-full px-5 py-2.5 text-sm">
-              Записаться бесплатно
+              className="btn-primary w-full py-3 text-sm tracking-wider justify-center">
+              ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={16} />
             </button>
           </div>
         )}
       </nav>
 
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #fce4f0 0%, #ede8fc 40%, #e4f5f2 100%)" }}>
-        <div className="pixel-bg absolute inset-0 opacity-40" />
-        <div className="stars-bg absolute inset-0" />
-
-        {FLOATING.map((el, i) => (
-          <div key={i}
-            className={`absolute text-2xl md:text-3xl select-none pointer-events-none ${i % 2 === 0 ? "animate-float" : "animate-float2"}`}
-            style={{ left: `${8 + (i * 12) % 84}%`, top: `${10 + (i * 17) % 70}%`, animationDelay: `${i * 0.6}s`, opacity: 0.65 }}>
-            {el}
-          </div>
-        ))}
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center py-16">
-          <div className="animate-slide-up">
-            <div className="section-tag mb-6">🚀 Школа программирования для детей</div>
-            <h1 className="font-russo text-4xl sm:text-5xl xl:text-6xl leading-tight text-q-purple mb-6">
-              ОТКРОЙ МИР<br />
-              <span style={{ color: "var(--q-violet)" }}>ТЕХНОЛОГИЙ</span><br />
-              <span style={{ background: "linear-gradient(135deg, #6cbfb0, #8b7bb8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                ВМЕСТЕ С НАМИ!
-              </span>
-            </h1>
-            <p className="text-lg text-gray-600 font-semibold mb-8 max-w-lg leading-relaxed">
-              Квантастика — игровая школа, где дети от 7 до 17 лет учатся программировать,
-              создавать игры и строить будущее через практику и творчество
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button onClick={() => setChatOpen(true)} className="btn-primary px-8 py-4 text-lg">
-                🎮 Записаться бесплатно
-              </button>
-              <button onClick={() => scrollTo("#directions")} className="btn-teal px-8 py-4 text-lg">
-                Направления →
-              </button>
-            </div>
-            <div className="mt-10 flex items-center gap-8 flex-wrap">
-              {[["7–17", "лет"], ["6", "направлений"], ["1200+", "учеников"]].map(([n, l]) => (
-                <div key={l} className="text-center">
-                  <div className="font-russo text-2xl text-q-violet">{n}</div>
-                  <div className="text-sm text-gray-500 font-semibold">{l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative flex justify-center animate-float">
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 rounded-3xl opacity-30 blur-3xl"
-                style={{ background: "radial-gradient(circle, #b8a8e0, #8ed4c8)" }} />
-              <img
-                src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/files/48e6136d-aa19-4380-b718-da6d1fb926bc.jpg"
-                alt="Дети программируют"
-                className="relative rounded-3xl shadow-2xl w-full object-cover"
-                style={{ border: "4px solid rgba(184,168,224,0.4)" }}
-              />
-              <div className="absolute -top-4 -right-4 bg-q-yellow text-q-purple rounded-2xl px-4 py-2 font-russo text-sm shadow-lg animate-wiggle">
-                🏆 Топ-школа 2024
+      {/* ── MARQUEE STRIP (under nav) ── */}
+      <div className="pt-20">
+        <div style={{ background: "#120e50", borderBottom: "1px solid rgba(255,214,0,0.2)", borderTop: "1px solid rgba(255,214,0,0.2)" }}
+          className="py-2.5 overflow-hidden">
+          <div className="animate-marquee flex gap-0 whitespace-nowrap">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex shrink-0">
+                {MARQUEE_ITEMS.map((t, j) => (
+                  <span key={j} className="font-russo text-sm tracking-widest px-8"
+                    style={{ color: "var(--q-yellow)" }}>
+                    {t} <span style={{ color: "rgba(255,214,0,0.4)" }}>/</span>
+                  </span>
+                ))}
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">⭐⭐⭐⭐⭐</span>
-                  <div>
-                    <div className="font-russo text-xs text-q-purple">4.9 / 5.0</div>
-                    <div className="text-xs text-gray-500">327 отзывов</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-q-violet opacity-70">
-          <span className="text-sm font-bold">Листай вниз</span>
-          <div className="animate-bounce"><Icon name="ChevronDown" size={24} /></div>
-        </div>
-      </section>
-
-      {/* MARQUEE */}
-      <div className="py-3 overflow-hidden" style={{ background: "linear-gradient(135deg, #8b7bb8, #6cbfb0)" }}>
-        <div className="animate-marquee flex gap-8 whitespace-nowrap">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-8 shrink-0">
-              {["🤖 Scratch", "🐍 Python", "🌐 Web", "🧠 AI", "🎮 Unity", "🔧 Роботы",
-                "⭐ Олимпиады", "🚀 Стартапы", "💡 Проекты", "🏆 Победы"].map(t => (
-                <span key={t} className="text-white font-russo text-sm tracking-widest">{t}</span>
-              ))}
-            </div>
-          ))}
         </div>
       </div>
 
-      {/* DIRECTIONS */}
-      <section id="directions" className="py-20 px-4 sm:px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">🎯 Направления</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">ЧЕМ МЫ ЗАНИМАЕМСЯ</h2>
-            <p className="text-gray-500 font-semibold max-w-xl mx-auto">
-              Выбери направление — мы подберём курс под возраст и уровень подготовки
-            </p>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden" style={{ background: "var(--q-bg)", minHeight: "90vh" }}>
+        <div className="grid-bg absolute inset-0 pointer-events-none" />
+
+        {/* Decorative dots */}
+        {dots.map((d, i) => (
+          <div key={i} className="absolute rounded-full animate-float pointer-events-none"
+            style={{
+              top: d.top, left: d.left, right: d.right,
+              width: d.size, height: d.size,
+              background: d.color,
+              animationDelay: `${i * 0.8}s`,
+              boxShadow: `0 0 12px ${d.color}`,
+            }} />
+        ))}
+
+        {/* Decorative code symbols top-right */}
+        <div className="absolute top-12 right-8 text-right pointer-events-none hidden lg:block"
+          style={{ color: "rgba(61,255,208,0.4)", fontFamily: "monospace", fontSize: "18px", lineHeight: "1.8" }}>
+          <div>{"{"}</div>
+          <div className="ml-4">{"}/>"}</div>
+          <div>{"<div>"}</div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-20 flex flex-col lg:flex-row items-center gap-8">
+          <div className="flex-1 animate-slide-up">
+            {/* Giant hero text */}
+            <h1 className="font-russo leading-[0.9] mb-0" style={{ color: "var(--q-yellow)" }}>
+              <div className="text-[clamp(4rem,11vw,9rem)] tracking-tight">ОНЛАЙН-ШКОЛА</div>
+              <div className="text-[clamp(2.8rem,7.5vw,7rem)] tracking-tight">ПРОГРАММИРОВАНИЯ</div>
+              <div className="text-[clamp(3.5rem,10vw,8.5rem)] tracking-tight"
+                style={{ color: "var(--q-yellow)", WebkitTextStroke: "0px" }}>
+                КВАНТАСТИКА
+              </div>
+            </h1>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {/* Right side illustration placeholder */}
+          <div className="hidden lg:flex flex-shrink-0 w-72 items-center justify-center relative">
+            <div style={{
+              width: 260, height: 260,
+              border: "2px solid rgba(61,255,208,0.3)",
+              background: "rgba(61,255,208,0.04)",
+              position: "relative",
+            }} className="animate-float">
+              {/* Isometric code block illustration */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div style={{ color: "rgba(61,255,208,0.6)", fontFamily: "monospace", fontSize: 13, lineHeight: 1.6 }}>
+                  <div style={{ color: "var(--q-yellow)" }}>{"function learn() {"}</div>
+                  <div className="ml-4" style={{ color: "#3DFFD0" }}>{"code();"}</div>
+                  <div className="ml-4" style={{ color: "#FF6B9D" }}>{"create();"}</div>
+                  <div className="ml-4" style={{ color: "#FFD600" }}>{"repeat();"}</div>
+                  <div style={{ color: "var(--q-yellow)" }}>{"}"}</div>
+                </div>
+              </div>
+              {/* Corner accents */}
+              <div className="absolute -top-1 -left-1 w-4 h-4" style={{ borderTop: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -top-1 -right-1 w-4 h-4" style={{ borderTop: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4" style={{ borderBottom: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4" style={{ borderBottom: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+            </div>
+          </div>
+        </div>
+
+        {/* CTA row */}
+        <div className="relative max-w-7xl mx-auto px-6 pb-16">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="font-nunito font-bold text-base leading-snug"
+              style={{ color: "var(--q-yellow)", maxWidth: 260 }}>
+              Запишитесь на бесплатный<br />вводный урок
+            </div>
+            <button onClick={() => setChatOpen(true)}
+              className="btn-primary px-10 py-4 text-base tracking-widest animate-glow-pulse">
+              ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={18} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT STRIP ── */}
+      <section style={{ background: "#120e50", borderTop: "1px solid rgba(255,214,0,0.15)", borderBottom: "1px solid rgba(255,214,0,0.15)" }}
+        className="py-10 px-6">
+        <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {ACHIEVEMENTS.map((a, i) => (
+            <div key={i} className="text-center">
+              <div className="font-russo text-4xl mb-1" style={{ color: "var(--q-yellow)" }}>{a.num}</div>
+              <div className="font-nunito text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>{a.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── DIRECTIONS ── */}
+      <section id="directions" className="py-20 px-6 relative" style={{ background: "var(--q-bg)" }}>
+        <div className="grid-bg absolute inset-0 pointer-events-none opacity-50" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="mb-12">
+            <div className="section-tag mb-4">Направления</div>
+            <h2 className="font-russo text-4xl sm:text-5xl text-white yellow-line">
+              НАШИ КУРСЫ
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.08)" }}>
             {DIRECTIONS.map((d, i) => (
-              <div key={i} className="card-hover rounded-3xl p-6 cursor-pointer group"
-                style={{ background: d.bg, border: `2px solid ${d.color}30` }}>
-                <div className="text-4xl mb-4">{d.emoji}</div>
-                <div className="font-russo text-lg mb-2" style={{ color: d.color }}>{d.title}</div>
-                <span className="inline-block text-xs font-bold px-3 py-1 rounded-full mb-3 text-white"
-                  style={{ background: d.color }}>
-                  {d.age}
-                </span>
-                <p className="text-gray-600 text-sm font-semibold leading-relaxed">{d.desc}</p>
-                <div className="mt-4 flex items-center gap-1 font-bold text-sm group-hover:gap-3 transition-all"
+              <div key={i} className="q-card p-8 cursor-pointer group relative overflow-hidden"
+                style={{ background: "var(--q-bg2)" }}>
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-300"
+                  style={{ background: d.color, opacity: 0.3 }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "1")} />
+
+                <div className="text-3xl mb-4">{d.icon}</div>
+                <div className="font-nunito text-xs font-bold tracking-widest mb-2 uppercase"
                   style={{ color: d.color }}>
-                  Подробнее <Icon name="ArrowRight" size={16} />
+                  {d.tag}
+                </div>
+                <div className="font-russo text-2xl text-white mb-1">{d.title}</div>
+                <div className="font-nunito text-sm font-bold mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {d.subtitle}
+                </div>
+                <p className="font-nunito text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {d.desc}
+                </p>
+                <div className="mt-6 flex items-center gap-2 font-nunito text-sm font-bold transition-all group-hover:gap-3"
+                  style={{ color: d.color }}>
+                  Подробнее <Icon name="ArrowRight" size={14} />
                 </div>
               </div>
             ))}
@@ -258,151 +343,84 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="py-20 px-4 sm:px-6"
-        style={{ background: "linear-gradient(135deg, #f5f0fd 0%, #eaf6f4 100%)" }}>
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="section-tag mb-6">🏫 О школе</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-6">
-              ПОЧЕМУ РОДИТЕЛИ<br />ВЫБИРАЮТ НАС?
-            </h2>
-            <div className="space-y-4">
-              {[
-                ["🎯", "Игровой формат обучения", "Дети учатся через создание реальных проектов — игр, сайтов, роботов"],
-                ["👩‍🏫", "Опытные педагоги", "Преподаватели с практическим опытом в IT и педагогическим образованием"],
-                ["📍", "Онлайн и очно", "Выбирай удобный формат — занятия проходят как в классах, так и дистанционно"],
-                ["🔄", "Гибкое расписание", "Подбираем время занятий под загруженность ребёнка в школе"],
-              ].map(([emoji, title, desc]) => (
-                <div key={title as string} className="flex gap-4 bg-white rounded-2xl p-4 shadow-sm">
-                  <span className="text-2xl flex-shrink-0">{emoji}</span>
-                  <div>
-                    <div className="font-bold text-q-purple">{title}</div>
-                    <div className="text-sm text-gray-500 font-semibold mt-1">{desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="relative">
-            <img
-              src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/files/3767cea9-51f0-47d0-9d03-186d2565c731.jpg"
-              alt="Обучение в Квантастике"
-              className="rounded-3xl shadow-2xl w-full object-cover animate-float2"
-              style={{ border: "4px solid rgba(184,168,224,0.3)" }}
-            />
-            <div className="absolute -bottom-6 -right-6 bg-q-yellow rounded-2xl p-4 shadow-xl animate-bounce-in">
-              <div className="font-russo text-q-purple text-sm">5 лет опыта</div>
-              <div className="text-xs text-gray-600 font-semibold">обучения детей</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TEACHERS */}
-      <section id="teachers" className="py-20 px-4 sm:px-6 bg-white">
+      {/* ── TEACHERS ── */}
+      <section id="teachers" className="py-20 px-6" style={{ background: "#120e50" }}>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">👩‍🏫 Преподаватели</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">НАША КОМАНДА</h2>
-            <p className="text-gray-500 font-semibold">IT-специалисты с призванием учить детей</p>
+          <div className="mb-12">
+            <div className="section-tag mb-4">Команда</div>
+            <h2 className="font-russo text-4xl sm:text-5xl text-white yellow-line">ПРЕПОДАВАТЕЛИ</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {TEACHERS.map((t, i) => (
-              <div key={i} className="card-hover text-center rounded-3xl p-8 border-2 border-q-light bg-white">
-                <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl mb-4"
-                  style={{ background: "linear-gradient(135deg, #f0ecfa, #e8f7f5)", boxShadow: "0 0 20px rgba(184,168,224,0.25)" }}>
+              <div key={i} className="q-card p-6 text-center group"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <div className="w-16 h-16 mx-auto flex items-center justify-center text-4xl mb-4"
+                  style={{ border: "1px solid rgba(255,214,0,0.3)", background: "rgba(255,214,0,0.05)" }}>
                   {t.emoji}
                 </div>
-                <div className="font-russo text-q-purple text-base mb-1">{t.name}</div>
-                <div className="text-q-teal font-bold text-sm mb-3">{t.role}</div>
-                <span className="inline-block bg-q-light text-q-violet text-xs font-bold px-3 py-1 rounded-full">
-                  {t.exp}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ACHIEVEMENTS */}
-      <section id="achievements" className="py-20 px-4 sm:px-6"
-        style={{ background: "linear-gradient(135deg, #f0ecfa, #fce4f0, #e8f7f5)" }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">🏆 Достижения</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">НАШИ РЕЗУЛЬТАТЫ</h2>
-            <p className="text-gray-500 font-semibold">Цифры, которыми мы гордимся</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {ACHIEVEMENTS.map((a, i) => (
-              <div key={i} className="text-center rounded-3xl p-8 bg-white shadow-sm card-hover">
-                <div className="text-4xl mb-3">{a.emoji}</div>
-                <div className="font-russo text-4xl text-q-violet mb-2">{a.num}</div>
-                <div className="text-gray-600 font-bold">{a.label}</div>
-              </div>
-            ))}
-          </div>
-          <div className="bg-white rounded-3xl p-8 shadow-sm">
-            <h3 className="font-russo text-xl text-q-purple text-center mb-8">🏅 Победы на олимпиадах</h3>
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[
-                ["2023", "🥇 1 место", "Олимпиада «КодFest», г. Москва"],
-                ["2024", "🥈 2 место", "Всероссийская по робототехнике"],
-                ["2024", "🥇 1 место", "Региональный хакатон школьников"],
-              ].map(([year, medal, name]) => (
-                <div key={name} className="rounded-2xl p-4 text-center" style={{ background: "#f5f0fd" }}>
-                  <div className="text-q-violet font-russo text-sm mb-1">{year}</div>
-                  <div className="text-q-purple font-russo text-lg mb-1">{medal}</div>
-                  <div className="text-gray-500 text-xs font-semibold">{name}</div>
+                <div className="font-russo text-base text-white mb-1">{t.name}</div>
+                <div className="font-nunito text-sm font-bold mb-2" style={{ color: "var(--q-teal)" }}>{t.role}</div>
+                <div className="font-nunito text-xs font-bold px-3 py-1 inline-block"
+                  style={{ color: "var(--q-yellow)", border: "1px solid rgba(255,214,0,0.3)", background: "rgba(255,214,0,0.05)" }}>
+                  Опыт: {t.exp}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">💎 Тарифы</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">ВЫБЕРИ СВОЙ ПЛАН</h2>
-            <p className="text-gray-500 font-semibold">Первое занятие — бесплатно!</p>
+      {/* ── PRICING ── */}
+      <section id="pricing" className="py-20 px-6 relative" style={{ background: "var(--q-bg)" }}>
+        <div className="grid-bg absolute inset-0 pointer-events-none opacity-40" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="mb-12">
+            <div className="section-tag mb-4">Стоимость</div>
+            <h2 className="font-russo text-4xl sm:text-5xl text-white yellow-line">ТАРИФЫ</h2>
+            <p className="font-nunito font-bold mt-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Первое занятие — бесплатно
+            </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-6 items-stretch">
+          <div className="grid sm:grid-cols-3 gap-6">
             {PRICING.map((p, i) => (
-              <div key={i} className={`relative rounded-3xl p-8 card-hover flex flex-col ${p.popular ? "scale-105 shadow-2xl" : "border-2"}`}
-                style={p.popular
-                  ? { background: `linear-gradient(135deg, ${p.color}, ${p.color}CC)`, border: "none" }
-                  : { background: p.bg, borderColor: `${p.color}30` }}>
-                {p.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-q-yellow text-q-purple font-russo text-sm px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
-                    ⭐ Популярный
+              <div key={i} className="relative p-8 flex flex-col"
+                style={{
+                  background: p.highlight ? "rgba(255,214,0,0.08)" : "rgba(255,255,255,0.04)",
+                  border: p.highlight ? "1px solid rgba(255,214,0,0.6)" : "1px solid rgba(255,255,255,0.1)",
+                }}>
+                {p.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 font-russo text-xs px-4 py-1"
+                    style={{ background: "var(--q-yellow)", color: "#1a1560" }}>
+                    ПОПУЛЯРНЫЙ
                   </div>
                 )}
-                <div className={`font-russo text-xl mb-2 ${p.popular ? "text-white" : ""}`}
-                  style={!p.popular ? { color: p.color } : {}}>
+                {/* Corner accents for highlighted */}
+                {p.highlight && <>
+                  <div className="absolute -top-px -left-px w-5 h-5" style={{ borderTop: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+                  <div className="absolute -top-px -right-px w-5 h-5" style={{ borderTop: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+                  <div className="absolute -bottom-px -left-px w-5 h-5" style={{ borderBottom: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+                  <div className="absolute -bottom-px -right-px w-5 h-5" style={{ borderBottom: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+                </>}
+
+                <div className="font-russo text-lg mb-4" style={{ color: p.highlight ? "var(--q-yellow)" : "rgba(255,255,255,0.7)" }}>
                   {p.name}
                 </div>
                 <div className="flex items-end gap-1 mb-6">
-                  <span className={`font-russo text-4xl ${p.popular ? "text-white" : ""}`}
-                    style={!p.popular ? { color: p.color } : {}}>
-                    {p.price}
-                  </span>
-                  <span className={`text-sm font-bold mb-2 ${p.popular ? "text-white/80" : "text-gray-500"}`}>₽/мес</span>
+                  <span className="font-russo text-5xl" style={{ color: p.highlight ? "var(--q-yellow)" : "white" }}>{p.price}</span>
+                  <span className="font-nunito text-sm font-bold mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>₽/мес</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {p.features.map(f => (
-                    <li key={f} className={`flex items-center gap-2 text-sm font-semibold ${p.popular ? "text-white" : "text-gray-600"}`}>
-                      <span>✅</span> {f}
+                    <li key={f} className="flex items-center gap-3 font-nunito text-sm font-semibold"
+                      style={{ color: "rgba(255,255,255,0.7)" }}>
+                      <span style={{ color: "var(--q-yellow)", flexShrink: 0 }}>—</span>
+                      {f}
                     </li>
                   ))}
                 </ul>
                 <button onClick={() => setChatOpen(true)}
-                  className={`w-full py-3 rounded-2xl font-russo text-sm transition-all hover:scale-105 ${p.popular ? "bg-white text-q-violet" : "text-white"}`}
-                  style={!p.popular ? { background: p.color } : {}}>
-                  Выбрать план
+                  className={`w-full py-3.5 font-russo text-sm tracking-widest ${p.highlight ? "btn-primary" : "btn-outline"}`}>
+                  ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={14} />
                 </button>
               </div>
             ))}
@@ -410,27 +428,29 @@ export default function Index() {
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section id="reviews" className="py-20 px-4 sm:px-6"
-        style={{ background: "linear-gradient(135deg, #fdf0f5, #f5f0fd)" }}>
+      {/* ── REVIEWS ── */}
+      <section id="reviews" className="py-20 px-6" style={{ background: "#120e50" }}>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">💬 Отзывы</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">ЧТО ГОВОРЯТ РОДИТЕЛИ</h2>
-            <p className="text-gray-500 font-semibold">Реальные истории наших учеников</p>
+          <div className="mb-12">
+            <div className="section-tag mb-4">Родители о нас</div>
+            <h2 className="font-russo text-4xl sm:text-5xl text-white yellow-line">ОТЗЫВЫ</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {REVIEWS.map((r, i) => (
-              <div key={i} className="card-hover bg-white rounded-3xl p-6 shadow-sm flex flex-col">
-                <div className="flex mb-3">
-                  {[...Array(r.rating)].map((_, j) => (
-                    <span key={j} className="text-q-yellow text-lg">⭐</span>
+              <div key={i} className="q-card p-6 flex flex-col"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <span key={j} style={{ color: "var(--q-yellow)", fontSize: 16 }}>★</span>
                   ))}
                 </div>
-                <p className="text-gray-600 font-semibold text-sm leading-relaxed mb-5 flex-1">«{r.text}»</p>
+                <p className="font-nunito text-sm font-semibold leading-relaxed flex-1 mb-5"
+                  style={{ color: "rgba(255,255,255,0.7)" }}>
+                  «{r.text}»
+                </p>
                 <div>
-                  <div className="font-bold text-q-purple">{r.name}</div>
-                  <div className="text-q-teal text-xs font-bold">{r.child}</div>
+                  <div className="font-russo text-sm text-white">{r.name}</div>
+                  <div className="font-nunito text-xs font-bold" style={{ color: "var(--q-teal)" }}>{r.child}</div>
                 </div>
               </div>
             ))}
@@ -438,128 +458,172 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CONTACTS */}
-      <section id="contacts" className="py-20 px-4 sm:px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-tag mb-4 mx-auto w-fit">📍 Контакты</div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">МЫ РЯДОМ</h2>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-8 mb-12">
-            {[
-              { emoji: "📍", title: "Адрес", info: "г. Москва, ул. Технологическая, д. 12", sub: "Метро: Технопарк" },
-              { emoji: "📞", title: "Телефон", info: "+7 (495) 000-00-00", sub: "Пн–Пт: 9:00–20:00" },
-              { emoji: "✉️", title: "Email", info: "hello@kvantastika.ru", sub: "Ответим в течение часа" },
-            ].map(c => (
-              <div key={c.title} className="card-hover text-center rounded-3xl p-8 bg-q-light">
-                <div className="text-4xl mb-4">{c.emoji}</div>
-                <div className="font-russo text-q-purple mb-2">{c.title}</div>
-                <div className="font-bold text-gray-800 mb-1">{c.info}</div>
-                <div className="text-sm text-gray-500">{c.sub}</div>
+      {/* ── CONTACTS ── */}
+      <section id="contacts" className="py-20 px-6 relative" style={{ background: "var(--q-bg)" }}>
+        <div className="grid-bg absolute inset-0 pointer-events-none opacity-40" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="section-tag mb-4">Контакты</div>
+              <h2 className="font-russo text-4xl sm:text-5xl text-white mb-8 yellow-line">СВЯЖИТЕСЬ С НАМИ</h2>
+              <div className="space-y-5">
+                {[
+                  { label: "Отдел продаж", val: "+7 (981) 962-15-85" },
+                  { label: "Звонок в школу", val: "+7 (495) 148-58-11" },
+                  { label: "Email", val: "hello@kvantastika.ru" },
+                  { label: "Адрес", val: "г. Москва, ул. Технологическая, д. 12" },
+                ].map(c => (
+                  <div key={c.label} className="flex items-start gap-4">
+                    <div className="w-1 h-6 mt-0.5 flex-shrink-0" style={{ background: "var(--q-yellow)" }} />
+                    <div>
+                      <div className="font-nunito text-xs font-bold uppercase tracking-wider mb-0.5"
+                        style={{ color: "rgba(255,255,255,0.4)" }}>{c.label}</div>
+                      <div className="font-russo text-base text-white">{c.val}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="text-center rounded-3xl p-12"
-            style={{ background: "linear-gradient(135deg, #e8dff7, #d5eee9)", border: "2px solid rgba(184,168,224,0.3)" }}>
-            <h3 className="font-russo text-2xl sm:text-3xl text-q-purple mb-4">🚀 ГОТОВ НАЧАТЬ?</h3>
-            <p className="text-gray-600 font-semibold mb-8 max-w-md mx-auto">
-              Запишись на бесплатное пробное занятие — и твой ребёнок влюбится в программирование!
-            </p>
-            <button onClick={() => setChatOpen(true)}
-              className="btn-primary px-10 py-4 font-russo text-lg">
-              🎮 Записаться бесплатно
-            </button>
+            </div>
+            <div className="p-10 relative"
+              style={{ background: "rgba(255,214,0,0.05)", border: "1px solid rgba(255,214,0,0.2)" }}>
+              {/* Corner decorations */}
+              <div className="absolute -top-px -left-px w-6 h-6" style={{ borderTop: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -top-px -right-px w-6 h-6" style={{ borderTop: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -bottom-px -left-px w-6 h-6" style={{ borderBottom: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+              <div className="absolute -bottom-px -right-px w-6 h-6" style={{ borderBottom: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+
+              <h3 className="font-russo text-2xl mb-2" style={{ color: "var(--q-yellow)" }}>БЕСПЛАТНЫЙ УРОК</h3>
+              <p className="font-nunito font-semibold text-sm mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
+                Запишитесь прямо сейчас — первое занятие полностью бесплатно
+              </p>
+              <button onClick={() => setChatOpen(true)}
+                className="btn-primary w-full py-4 text-sm tracking-widest justify-center">
+                ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-10 px-4 sm:px-6" style={{ background: "#f0ecfa" }}>
+      {/* ── FOOTER ── */}
+      <footer style={{ background: "#0d0a3d", borderTop: "1px solid rgba(255,214,0,0.15)" }}
+        className="py-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🧠</span>
-            <span className="font-russo tracking-wider text-q-purple">КВАНТАСТИКА</span>
-          </div>
-          <div className="text-gray-400 text-sm font-semibold">© 2024 Квантастика. Все права защищены.</div>
-          <div className="flex gap-4">
+          <span className="font-russo text-xl tracking-[0.15em]" style={{ color: "var(--q-yellow)" }}>
+            КВАНТАСТИКА
+          </span>
+          <span className="font-nunito text-xs font-semibold" style={{ color: "rgba(255,255,255,0.3)" }}>
+            © 2024 Квантастика. Все права защищены.
+          </span>
+          <div className="flex gap-6">
             {["ВКонтакте", "Telegram", "WhatsApp"].map(s => (
-              <a key={s} href="#" className="text-gray-400 hover:text-q-violet transition-colors text-sm font-bold">{s}</a>
+              <a key={s} href="#"
+                className="font-nunito text-xs font-bold transition-colors hover:text-white"
+                style={{ color: "rgba(255,255,255,0.4)" }}>
+                {s}
+              </a>
             ))}
           </div>
         </div>
       </footer>
 
-      {/* CHAT BUTTON */}
-      <button
-        onClick={() => setChatOpen(true)}
-        className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full text-white shadow-2xl flex items-center justify-center text-2xl animate-chat-bounce"
-        style={{ background: "linear-gradient(135deg, #b8a8e0, #8ed4c8)", boxShadow: "0 0 25px rgba(184,168,224,0.5)" }}
+      {/* ── FLOATING CHAT BUTTON ── */}
+      <button onClick={() => setChatOpen(true)}
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 flex items-center justify-center animate-chat-bounce"
+        style={{
+          background: "var(--q-yellow)",
+          color: "#1a1560",
+          boxShadow: "0 0 20px rgba(255,214,0,0.5)",
+        }}
         title="Задать вопрос">
-        💬
+        <Icon name="MessageCircle" size={22} />
       </button>
 
-      {/* CHAT MODAL */}
+      {/* ── CHAT MODAL ── */}
       {chatOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
-          style={{ background: "rgba(61,44,141,0.6)", backdropFilter: "blur(6px)" }}
+          style={{ background: "rgba(13,10,61,0.85)", backdropFilter: "blur(8px)" }}
           onClick={e => e.target === e.currentTarget && setChatOpen(false)}>
-          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl animate-slide-up overflow-hidden">
+          <div className="w-full max-w-md animate-slide-up relative"
+            style={{ background: "var(--q-bg2)", border: "1px solid rgba(255,214,0,0.3)" }}>
+            {/* Corner accents */}
+            <div className="absolute -top-px -left-px w-5 h-5" style={{ borderTop: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+            <div className="absolute -top-px -right-px w-5 h-5" style={{ borderTop: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+            <div className="absolute -bottom-px -left-px w-5 h-5" style={{ borderBottom: "2px solid var(--q-yellow)", borderLeft: "2px solid var(--q-yellow)" }} />
+            <div className="absolute -bottom-px -right-px w-5 h-5" style={{ borderBottom: "2px solid var(--q-yellow)", borderRight: "2px solid var(--q-yellow)" }} />
+
+            {/* Header */}
             <div className="flex items-center justify-between px-6 py-4"
-              style={{ background: "linear-gradient(135deg, #8b7bb8, #b8a8e0)" }}>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">💬</span>
-                <div>
-                  <div className="font-russo text-white">Задать вопрос</div>
-                  <div className="text-white/70 text-xs">Ответим в течение 15 минут</div>
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <div>
+                <div className="font-russo text-base" style={{ color: "var(--q-yellow)" }}>ЗАДАТЬ ВОПРОС</div>
+                <div className="font-nunito text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  Ответим в течение 15 минут
                 </div>
               </div>
               <button onClick={() => { setChatOpen(false); setChatSent(false); }}
-                className="text-white/70 hover:text-white transition-colors">
+                className="text-white/50 hover:text-white transition-colors">
                 <Icon name="X" size={20} />
               </button>
             </div>
+
             <div className="p-6">
               {chatSent ? (
                 <div className="text-center py-8 animate-bounce-in">
-                  <div className="text-6xl mb-4">🎉</div>
-                  <div className="font-russo text-q-purple text-xl mb-2">Отлично!</div>
-                  <p className="text-gray-600 font-semibold">Мы получили ваш вопрос и свяжемся в ближайшее время!</p>
+                  <div className="text-5xl mb-4">✅</div>
+                  <div className="font-russo text-xl mb-2" style={{ color: "var(--q-yellow)" }}>ОТЛИЧНО!</div>
+                  <p className="font-nunito font-semibold text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    Мы получили ваш вопрос и свяжемся в ближайшее время!
+                  </p>
                   <button onClick={() => { setChatSent(false); setChatForm({ name: "", phone: "", question: "" }); }}
-                    className="mt-6 btn-primary px-6 py-2.5 text-sm">
-                    Задать ещё вопрос
+                    className="btn-outline mt-6 px-6 py-2.5 text-sm tracking-wider">
+                    ЕЩЁ ВОПРОС
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {[
+                    { label: "Ваше имя", key: "name", placeholder: "Например: Анна", type: "text" },
+                    { label: "Телефон", key: "phone", placeholder: "+7 (___) ___-__-__", type: "tel" },
+                  ].map(f => (
+                    <div key={f.key}>
+                      <label className="block font-nunito text-xs font-bold uppercase tracking-wider mb-1.5"
+                        style={{ color: "rgba(255,255,255,0.5)" }}>{f.label}</label>
+                      <input type={f.type} required placeholder={f.placeholder}
+                        value={chatForm[f.key as keyof typeof chatForm]}
+                        onChange={e => setChatForm(p => ({ ...p, [f.key]: e.target.value }))}
+                        className="w-full px-4 py-3 font-nunito font-semibold text-sm text-white outline-none transition-colors"
+                        style={{
+                          background: "rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                          borderRadius: 0,
+                        }}
+                        onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.6)")}
+                        onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
+                      />
+                    </div>
+                  ))}
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">Ваше имя</label>
-                    <input type="text" required placeholder="Например: Анна"
-                      value={chatForm.name}
-                      onChange={e => setChatForm(p => ({ ...p, name: e.target.value }))}
-                      className="w-full rounded-2xl border-2 border-q-light px-4 py-3 font-semibold text-gray-800 outline-none focus:border-q-violet transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">Телефон</label>
-                    <input type="tel" required placeholder="+7 (___) ___-__-__"
-                      value={chatForm.phone}
-                      onChange={e => setChatForm(p => ({ ...p, phone: e.target.value }))}
-                      className="w-full rounded-2xl border-2 border-q-light px-4 py-3 font-semibold text-gray-800 outline-none focus:border-q-violet transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">Ваш вопрос</label>
-                    <textarea placeholder="Сколько стоит курс? Какой возраст подходит?..."
-                      rows={3}
+                    <label className="block font-nunito text-xs font-bold uppercase tracking-wider mb-1.5"
+                      style={{ color: "rgba(255,255,255,0.5)" }}>Ваш вопрос</label>
+                    <textarea placeholder="Сколько стоит курс? Какой возраст подходит?..." rows={3}
                       value={chatForm.question}
                       onChange={e => setChatForm(p => ({ ...p, question: e.target.value }))}
-                      className="w-full rounded-2xl border-2 border-q-light px-4 py-3 font-semibold text-gray-800 outline-none focus:border-q-violet transition-colors resize-none"
+                      className="w-full px-4 py-3 font-nunito font-semibold text-sm text-white outline-none transition-colors resize-none"
+                      style={{
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        borderRadius: 0,
+                      }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.6)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full py-3.5 text-base">
-                    🚀 Отправить вопрос
+                  <button type="submit"
+                    className="btn-primary w-full py-4 text-sm tracking-widest justify-center">
+                    ОТПРАВИТЬ <Icon name="ArrowUpRight" size={16} />
                   </button>
-                  <p className="text-xs text-gray-400 text-center font-semibold">
+                  <p className="font-nunito text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
                     Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
                   </p>
                 </form>
