@@ -112,6 +112,14 @@ export default function Index() {
   const [chatForm, setChatForm] = useState({ name: "", phone: "", question: "" });
   const [chatSent, setChatSent] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [checkOpen, setCheckOpen] = useState(false);
+  const [checkForm, setCheckForm] = useState({ region: "", city: "", school: "" });
+  const [checkSent, setCheckSent] = useState(false);
+
+  const handleCheckSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setCheckSent(true);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,6 +162,13 @@ export default function Index() {
                   {l.label}
                 </button>
               ))}
+              <button onClick={() => setCheckOpen(true)}
+                className="font-nunito font-bold text-sm tracking-wider uppercase px-4 py-2 transition-all"
+                style={{ color: "var(--q-yellow)", border: "1px solid rgba(255,214,0,0.4)", background: "rgba(255,214,0,0.07)" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,214,0,0.15)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,214,0,0.07)")}>
+                🔍 Проверить школу
+              </button>
             </div>
 
             {/* Right: phones + user */}
@@ -632,6 +647,114 @@ export default function Index() {
                   <p className="font-nunito text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
                     Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
                   </p>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* ── CHECK SCHOOL MODAL ── */}
+      {checkOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(13,10,61,0.9)", backdropFilter: "blur(10px)" }}
+          onClick={e => e.target === e.currentTarget && (setCheckOpen(false), setCheckSent(false))}>
+          <div className="w-full max-w-xl animate-slide-up relative"
+            style={{ background: "var(--q-bg2)", border: "1px solid rgba(255,214,0,0.35)" }}>
+
+            {/* Corner accents */}
+            {["-top-px -left-px border-t-2 border-l-2", "-top-px -right-px border-t-2 border-r-2",
+              "-bottom-px -left-px border-b-2 border-l-2", "-bottom-px -right-px border-b-2 border-r-2"].map((cls, i) => (
+              <div key={i} className={`absolute w-5 h-5 ${cls}`} style={{ borderColor: "var(--q-yellow)" }} />
+            ))}
+
+            {/* Header */}
+            <div className="flex items-center justify-between px-8 py-5"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <div>
+                <div className="font-russo text-xl" style={{ color: "var(--q-yellow)" }}>
+                  🔍 ПРОВЕРИТЬ ШКОЛУ
+                </div>
+                <div className="font-nunito text-xs font-semibold mt-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  Найдите вашу школу в базе Квантастики
+                </div>
+              </div>
+              <button onClick={() => { setCheckOpen(false); setCheckSent(false); }}
+                className="text-white/40 hover:text-white transition-colors ml-4">
+                <Icon name="X" size={22} />
+              </button>
+            </div>
+
+            <div className="px-8 py-8">
+              {checkSent ? (
+                <div className="text-center py-6 animate-bounce-in">
+                  <div className="text-5xl mb-4">✅</div>
+                  <div className="font-russo text-xl mb-2" style={{ color: "var(--q-yellow)" }}>НАЙДЕНО!</div>
+                  <p className="font-nunito font-semibold text-sm mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
+                    {checkForm.school && <>Школа: <span className="text-white font-bold">«{checkForm.school}»</span><br /></>}
+                    {checkForm.city && <>{checkForm.city}, </>}{checkForm.region}
+                  </p>
+                  <p className="font-nunito text-sm mt-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+                    Данная школа работает с платформой Квантастика
+                  </p>
+                  <button onClick={() => { setCheckSent(false); setCheckForm({ region: "", city: "", school: "" }); }}
+                    className="btn-outline mt-6 px-6 py-2.5 text-sm tracking-wider">
+                    ПРОВЕРИТЬ ЕЩЁ
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleCheckSubmit} className="space-y-5">
+                  {/* Region */}
+                  <div>
+                    <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2"
+                      style={{ color: "rgba(255,255,255,0.45)" }}>
+                      Область / Регион <span style={{ color: "var(--q-yellow)" }}>*</span>
+                    </label>
+                    <input type="text" required placeholder="Например: Московская область"
+                      value={checkForm.region}
+                      onChange={e => setCheckForm(p => ({ ...p, region: e.target.value }))}
+                      className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors placeholder:text-white/25"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0 }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
+                    />
+                  </div>
+
+                  {/* City */}
+                  <div>
+                    <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2"
+                      style={{ color: "rgba(255,255,255,0.45)" }}>
+                      Населённый пункт <span style={{ color: "var(--q-yellow)" }}>*</span>
+                    </label>
+                    <input type="text" required placeholder="Например: Химки"
+                      value={checkForm.city}
+                      onChange={e => setCheckForm(p => ({ ...p, city: e.target.value }))}
+                      className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors placeholder:text-white/25"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0 }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
+                    />
+                  </div>
+
+                  {/* School */}
+                  <div>
+                    <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2"
+                      style={{ color: "rgba(255,255,255,0.45)" }}>
+                      № школы или название <span style={{ color: "var(--q-yellow)" }}>*</span>
+                    </label>
+                    <input type="text" required placeholder="Например: 47 или «Гимназия №3»"
+                      value={checkForm.school}
+                      onChange={e => setCheckForm(p => ({ ...p, school: e.target.value }))}
+                      className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors placeholder:text-white/25"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0 }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
+                    />
+                  </div>
+
+                  <button type="submit"
+                    className="btn-primary w-full py-4 text-sm tracking-widest justify-center mt-2">
+                    НАЙТИ ШКОЛУ <Icon name="Search" size={16} />
+                  </button>
                 </form>
               )}
             </div>
