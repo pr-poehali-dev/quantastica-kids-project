@@ -733,12 +733,12 @@ export default function Index() {
                     <div className="flex items-center gap-8">
                       <div>
                         <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Выделено школе</div>
-                        <div className="font-russo" style={{ fontSize: "4.5rem", lineHeight: 1, color: "rgba(255,255,255,0.3)", textDecoration: "line-through" }}>250</div>
+                        <div className="font-russo" style={{ fontSize: "4.5rem", lineHeight: 1, color: "rgba(255,255,255,0.3)", textDecoration: "line-through" }}>50</div>
                       </div>
                       <div className="w-px self-stretch" style={{ background: "rgba(255,214,0,0.25)" }} />
                       <div>
                         <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Осталось сейчас</div>
-                        <div className="font-russo" style={{ fontSize: "5.5rem", lineHeight: 1, color: "var(--q-yellow)" }}>7</div>
+                        <div className="font-russo" style={{ fontSize: "5.5rem", lineHeight: 1, color: "var(--q-yellow)" }}>3</div>
                       </div>
                     </div>
                   </div>
@@ -747,7 +747,7 @@ export default function Index() {
                   <div className="flex items-start gap-3 mb-6 p-4" style={{ background: "rgba(255,107,157,0.08)", border: "1px solid rgba(255,107,157,0.25)" }}>
                     <span style={{ color: "#FF6B9D", flexShrink: 0 }}>⚠</span>
                     <p className="font-nunito text-xs font-semibold leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                      Осталось всего <span style={{ color: "#FF6B9D", fontWeight: 700 }}>7 льготных мест</span> из 250 выделенных вашей школе. Успейте записаться до окончания квоты.
+                      Осталось всего <span style={{ color: "#FF6B9D", fontWeight: 700 }}>3 льготных места</span> из 50 выделенных вашей школе. Успейте записаться до окончания квоты.
                     </p>
                   </div>
 
