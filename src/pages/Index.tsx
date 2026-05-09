@@ -295,50 +295,41 @@ export default function Index() {
           </div>
         </div>
 
-        {/* CTA row */}
-        <div className="relative max-w-7xl mx-auto px-6 pb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
-            <div className="font-nunito font-bold text-base leading-snug"
-              style={{ color: "var(--q-yellow)", maxWidth: 260 }}>
-              Запишитесь на бесплатный<br />вводный урок
-            </div>
-            <button onClick={() => setChatOpen(true)}
-              className="btn-primary px-10 py-4 text-base tracking-widest animate-glow-pulse">
-              ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={18} />
-            </button>
-          </div>
-
-          {/* Stats row */}
-          <div className="flex flex-wrap gap-6 sm:gap-10">
+        {/* Stats row */}
+        <div className="relative max-w-7xl mx-auto px-6 pb-10">
+          <div className="flex flex-wrap gap-10 sm:gap-16">
             {[
               { value: "8 лет", label: "на рынке" },
               { value: "20 000+", label: "учеников в год" },
               { value: "47", label: "наград на олимпиадах" },
             ].map((s, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-1 h-8 rounded-full" style={{ background: "var(--q-yellow)" }} />
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-1.5 h-12 rounded-full" style={{ background: "var(--q-yellow)" }} />
                 <div>
-                  <div className="font-russo text-2xl leading-none" style={{ color: "#fff" }}>{s.value}</div>
-                  <div className="font-nunito text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</div>
+                  <div className="font-russo text-4xl leading-none" style={{ color: "#fff" }}>{s.value}</div>
+                  <div className="font-nunito text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* QR code — bottom right corner */}
-        <div className="absolute bottom-6 right-6 hidden lg:flex items-end gap-3">
-          <div style={{ maxWidth: 180 }}>
-            <p className="font-nunito text-[10px] leading-snug text-right" style={{ color: "rgba(255,255,255,0.35)" }}>
-              Образовательная лицензия № Л035-01298-77/02560522.<br />
-              Гарантия качества услуги по нормам и правилам,<br />установленным законодательством РФ
+        {/* License + QR — bottom right corner */}
+        <div className="absolute bottom-6 right-6 hidden lg:flex items-end gap-4">
+          <div style={{ maxWidth: 240 }}>
+            <p className="font-nunito text-xs leading-relaxed text-right" style={{ color: "rgba(255,255,255,0.45)" }}>
+              Образовательная лицензия<br />
+              № Л035-01298-77/02560522.<br />
+              <span style={{ color: "rgba(255,255,255,0.3)" }}>
+                Гарантия качества услуги по нормам и правилам,<br />установленным законодательством РФ
+              </span>
             </p>
           </div>
-          <div style={{ border: "1px solid rgba(255,255,255,0.15)", padding: 4, background: "#fff", borderRadius: 2 }}>
+          <div style={{ border: "1px solid rgba(255,255,255,0.2)", padding: 6, background: "#fff", borderRadius: 4 }}>
             <img
-              src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/bucket/5650284c-d1d0-4744-ab84-b67a4698aafb.png"
+              src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/bucket/5dbf9b55-75a0-4d9e-b0a5-94973f5f378b.png"
               alt="QR лицензия"
-              style={{ width: 64, height: 64, display: "block" }}
+              style={{ width: 90, height: 90, display: "block" }}
             />
           </div>
         </div>
