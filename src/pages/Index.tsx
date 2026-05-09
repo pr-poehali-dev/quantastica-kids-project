@@ -705,27 +705,16 @@ export default function Index() {
                     <div className="font-nunito text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(255,214,0,0.7)" }}>
                       Льготные места
                     </div>
-                    <div className="flex items-end gap-6">
+                    <div className="flex items-center gap-8">
                       <div>
                         <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Выделено школе</div>
-                        <div className="font-russo text-4xl" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>250</div>
+                        <div className="font-russo" style={{ fontSize: "4.5rem", lineHeight: 1, color: "rgba(255,255,255,0.3)", textDecoration: "line-through" }}>250</div>
                       </div>
-                      <div className="w-px h-12 self-center" style={{ background: "rgba(255,214,0,0.25)" }} />
+                      <div className="w-px self-stretch" style={{ background: "rgba(255,214,0,0.25)" }} />
                       <div>
                         <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Осталось сейчас</div>
-                        <div className="font-russo text-5xl" style={{ color: "var(--q-yellow)" }}>7</div>
+                        <div className="font-russo" style={{ fontSize: "5.5rem", lineHeight: 1, color: "var(--q-yellow)" }}>7</div>
                       </div>
-                    </div>
-                    <div className="mt-4 flex items-center gap-2">
-                      <div className="flex gap-1">
-                        {[...Array(7)].map((_, i) => (
-                          <div key={i} className="w-4 h-4" style={{ background: "var(--q-yellow)" }} />
-                        ))}
-                        {[...Array(10)].map((_, i) => (
-                          <div key={i} className="w-4 h-4" style={{ background: "rgba(255,255,255,0.1)" }} />
-                        ))}
-                      </div>
-                      <span className="font-nunito text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)" }}>из 250</span>
                     </div>
                   </div>
 
