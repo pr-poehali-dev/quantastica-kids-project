@@ -156,16 +156,22 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Right: phones + button */}
+            {/* Right: phones + user */}
             <div className="hidden lg:flex items-center gap-8">
               <div className="font-nunito text-right text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
                 <div>Отдел продаж: <span className="text-white font-bold">+7 (981) 962-15-85</span></div>
                 <div>Звонок в школу: <span className="text-white font-bold">+7 (495) 148-58-11</span></div>
               </div>
-              <button onClick={() => setChatOpen(true)}
-                className="btn-outline px-6 py-3 text-sm tracking-wider">
-                ВОЙТИ <Icon name="ArrowRight" size={16} />
-              </button>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 flex items-center justify-center font-russo text-sm flex-shrink-0"
+                  style={{ background: "var(--q-yellow)", color: "#1a1560" }}>
+                  ВО
+                </div>
+                <div className="text-left">
+                  <div className="font-russo text-xs text-white leading-tight">Валиев О.Ю.</div>
+                  <div className="font-nunito text-xs font-bold leading-tight" style={{ color: "rgba(255,214,0,0.7)" }}>Преподаватель</div>
+                </div>
+              </div>
             </div>
 
             <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-white p-2">
