@@ -703,12 +703,12 @@ export default function Index() {
                   {/* Grant info */}
                   <div className="mb-5 p-5 relative" style={{ background: "rgba(255,214,0,0.07)", border: "1px solid rgba(255,214,0,0.3)" }}>
                     <div className="font-nunito text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(255,214,0,0.7)" }}>
-                      Льготные места (транспортные гранты)
+                      Льготные места
                     </div>
                     <div className="flex items-end gap-6">
                       <div>
                         <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Выделено школе</div>
-                        <div className="font-russo text-4xl" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>1000</div>
+                        <div className="font-russo text-4xl" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>250</div>
                       </div>
                       <div className="w-px h-12 self-center" style={{ background: "rgba(255,214,0,0.25)" }} />
                       <div>
@@ -725,7 +725,7 @@ export default function Index() {
                           <div key={i} className="w-4 h-4" style={{ background: "rgba(255,255,255,0.1)" }} />
                         ))}
                       </div>
-                      <span className="font-nunito text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)" }}>из 1000</span>
+                      <span className="font-nunito text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)" }}>из 250</span>
                     </div>
                   </div>
 
@@ -733,7 +733,7 @@ export default function Index() {
                   <div className="flex items-start gap-3 mb-6 p-4" style={{ background: "rgba(255,107,157,0.08)", border: "1px solid rgba(255,107,157,0.25)" }}>
                     <span style={{ color: "#FF6B9D", flexShrink: 0 }}>⚠</span>
                     <p className="font-nunito text-xs font-semibold leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                      Осталось всего <span style={{ color: "#FF6B9D", fontWeight: 700 }}>7 льготных мест</span> из 1000 выделенных вашей школе. Успейте записаться до окончания квоты.
+                      Осталось всего <span style={{ color: "#FF6B9D", fontWeight: 700 }}>7 льготных мест</span> из 250 выделенных вашей школе. Успейте записаться до окончания квоты.
                     </p>
                   </div>
 
