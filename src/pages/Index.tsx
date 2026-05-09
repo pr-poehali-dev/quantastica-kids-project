@@ -686,20 +686,67 @@ export default function Index() {
 
             <div className="px-8 py-8">
               {checkSent ? (
-                <div className="text-center py-6 animate-bounce-in">
-                  <div className="text-5xl mb-4">✅</div>
-                  <div className="font-russo text-xl mb-2" style={{ color: "var(--q-yellow)" }}>НАЙДЕНО!</div>
-                  <p className="font-nunito font-semibold text-sm mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
-                    {checkForm.school && <>Школа: <span className="text-white font-bold">«{checkForm.school}»</span><br /></>}
-                    {checkForm.city && <>{checkForm.city}, </>}{checkForm.region}
-                  </p>
-                  <p className="font-nunito text-sm mt-3" style={{ color: "rgba(255,255,255,0.45)" }}>
-                    Данная школа работает с платформой Квантастика
-                  </p>
-                  <button onClick={() => { setCheckSent(false); setCheckForm({ region: "", city: "", school: "" }); }}
-                    className="btn-outline mt-6 px-6 py-2.5 text-sm tracking-wider">
-                    ПРОВЕРИТЬ ЕЩЁ
-                  </button>
+                <div className="animate-bounce-in">
+                  {/* School name */}
+                  <div className="mb-6 pb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div className="font-nunito text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Школа найдена
+                    </div>
+                    <div className="font-russo text-lg text-white">
+                      {checkForm.school ? `«${checkForm.school}»` : "Школа"}
+                    </div>
+                    <div className="font-nunito text-sm font-semibold mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>
+                      {[checkForm.city, checkForm.region].filter(Boolean).join(", ")}
+                    </div>
+                  </div>
+
+                  {/* Grant info */}
+                  <div className="mb-5 p-5 relative" style={{ background: "rgba(255,214,0,0.07)", border: "1px solid rgba(255,214,0,0.3)" }}>
+                    <div className="font-nunito text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(255,214,0,0.7)" }}>
+                      Льготные места (транспортные гранты)
+                    </div>
+                    <div className="flex items-end gap-6">
+                      <div>
+                        <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Выделено школе</div>
+                        <div className="font-russo text-4xl" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>1000</div>
+                      </div>
+                      <div className="w-px h-12 self-center" style={{ background: "rgba(255,214,0,0.25)" }} />
+                      <div>
+                        <div className="font-nunito text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>Осталось сейчас</div>
+                        <div className="font-russo text-5xl" style={{ color: "var(--q-yellow)" }}>7</div>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-center gap-2">
+                      <div className="flex gap-1">
+                        {[...Array(7)].map((_, i) => (
+                          <div key={i} className="w-4 h-4" style={{ background: "var(--q-yellow)" }} />
+                        ))}
+                        {[...Array(10)].map((_, i) => (
+                          <div key={i} className="w-4 h-4" style={{ background: "rgba(255,255,255,0.1)" }} />
+                        ))}
+                      </div>
+                      <span className="font-nunito text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)" }}>из 1000</span>
+                    </div>
+                  </div>
+
+                  {/* Warning */}
+                  <div className="flex items-start gap-3 mb-6 p-4" style={{ background: "rgba(255,107,157,0.08)", border: "1px solid rgba(255,107,157,0.25)" }}>
+                    <span style={{ color: "#FF6B9D", flexShrink: 0 }}>⚠</span>
+                    <p className="font-nunito text-xs font-semibold leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      Осталось всего <span style={{ color: "#FF6B9D", fontWeight: 700 }}>7 льготных мест</span> из 1000 выделенных вашей школе. Успейте записаться до окончания квоты.
+                    </p>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button onClick={() => { setChatOpen(true); setCheckOpen(false); setCheckSent(false); }}
+                      className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center">
+                      ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={14} />
+                    </button>
+                    <button onClick={() => { setCheckSent(false); setCheckForm({ region: "", city: "", school: "" }); }}
+                      className="btn-outline px-5 py-3.5 text-sm tracking-wider">
+                      ← НАЗАД
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleCheckSubmit} className="space-y-5">
