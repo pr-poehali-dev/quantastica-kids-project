@@ -12,12 +12,12 @@ const NAV_LINKS = [
 ];
 
 const DIRECTIONS = [
-  { emoji: "🤖", title: "Scratch и создание игр", age: "7–10 лет", color: "#5B3FCC", bg: "#EBE8FF", desc: "Дети создают анимации и игры в визуальной среде Scratch без единой строчки кода" },
-  { emoji: "🐍", title: "Python для начинающих", age: "10–14 лет", color: "#1DB8A0", bg: "#D5F5EF", desc: "Первый настоящий язык программирования — учимся решать задачи и писать скрипты" },
-  { emoji: "🌐", title: "Web-разработка", age: "12–16 лет", color: "#FF6B9D", bg: "#FFE8F2", desc: "HTML, CSS и JavaScript — создаём сайты и приложения с нуля" },
-  { emoji: "🧠", title: "Искусственный интеллект", age: "14–17 лет", color: "#E8A400", bg: "#FFF8DC", desc: "Обучаем нейросети, работаем с данными и строим умные системы" },
-  { emoji: "🎮", title: "Unity — разработка игр", age: "13–17 лет", color: "#5B3FCC", bg: "#EBE8FF", desc: "Профессиональная разработка 2D/3D игр на движке Unity и C#" },
-  { emoji: "🔧", title: "Робототехника", age: "8–13 лет", color: "#1DB8A0", bg: "#D5F5EF", desc: "Собираем и программируем роботов — от простых конструкций до сложных механизмов" },
+  { emoji: "🤖", title: "Scratch и создание игр", age: "7–10 лет", color: "#8b7bb8", bg: "#f0ecfa", desc: "Дети создают анимации и игры в визуальной среде Scratch без единой строчки кода" },
+  { emoji: "🐍", title: "Python для начинающих", age: "10–14 лет", color: "#6cbfb0", bg: "#e8f7f5", desc: "Первый настоящий язык программирования — учимся решать задачи и писать скрипты" },
+  { emoji: "🌐", title: "Web-разработка", age: "12–16 лет", color: "#e887ae", bg: "#fdf0f5", desc: "HTML, CSS и JavaScript — создаём сайты и приложения с нуля" },
+  { emoji: "🧠", title: "Искусственный интеллект", age: "14–17 лет", color: "#c9a84c", bg: "#fdf8ec", desc: "Обучаем нейросети, работаем с данными и строим умные системы" },
+  { emoji: "🎮", title: "Unity — разработка игр", age: "13–17 лет", color: "#8b7bb8", bg: "#f0ecfa", desc: "Профессиональная разработка 2D/3D игр на движке Unity и C#" },
+  { emoji: "🔧", title: "Робототехника", age: "8–13 лет", color: "#6cbfb0", bg: "#e8f7f5", desc: "Собираем и программируем роботов — от простых конструкций до сложных механизмов" },
 ];
 
 const TEACHERS = [
@@ -38,24 +38,24 @@ const PRICING = [
   {
     name: "Старт",
     price: "3 900",
-    color: "#5B3FCC",
-    bg: "#EBE8FF",
+    color: "#8b7bb8",
+    bg: "#f0ecfa",
     features: ["4 занятия в месяц", "1 час каждое", "Онлайн или очно", "Доступ к материалам"],
     popular: false,
   },
   {
     name: "Прогресс",
     price: "6 900",
-    color: "#1DB8A0",
-    bg: "#D5F5EF",
+    color: "#6cbfb0",
+    bg: "#e8f7f5",
     features: ["8 занятий в месяц", "1.5 часа каждое", "Онлайн или очно", "Домашние задания", "Отчёты для родителей"],
     popular: true,
   },
   {
     name: "Профи",
     price: "11 900",
-    color: "#FF6B9D",
-    bg: "#FFE8F2",
+    color: "#e887ae",
+    bg: "#fdf0f5",
     features: ["Безлимит занятий", "Индивидуальный план", "Менторство 1 на 1", "Подготовка к олимпиадам", "Портфолио проектов"],
     popular: false,
   },
@@ -137,7 +137,7 @@ export default function Index() {
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #C8EDEA 0%, #D5CCFF 50%, #EBE8FF 100%)" }}>
+        style={{ background: "linear-gradient(135deg, #fce4f0 0%, #ede8fc 40%, #e4f5f2 100%)" }}>
         <div className="pixel-bg absolute inset-0 opacity-40" />
         <div className="stars-bg absolute inset-0" />
 
@@ -155,7 +155,7 @@ export default function Index() {
             <h1 className="font-russo text-4xl sm:text-5xl xl:text-6xl leading-tight text-q-purple mb-6">
               ОТКРОЙ МИР<br />
               <span style={{ color: "var(--q-violet)" }}>ТЕХНОЛОГИЙ</span><br />
-              <span style={{ background: "linear-gradient(135deg, #1DB8A0, #5B3FCC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: "linear-gradient(135deg, #6cbfb0, #8b7bb8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 ВМЕСТЕ С НАМИ!
               </span>
             </h1>
@@ -184,12 +184,12 @@ export default function Index() {
           <div className="relative flex justify-center animate-float">
             <div className="relative w-full max-w-md">
               <div className="absolute inset-0 rounded-3xl opacity-30 blur-3xl"
-                style={{ background: "radial-gradient(circle, #5B3FCC, #1DB8A0)" }} />
+                style={{ background: "radial-gradient(circle, #b8a8e0, #8ed4c8)" }} />
               <img
                 src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/files/48e6136d-aa19-4380-b718-da6d1fb926bc.jpg"
                 alt="Дети программируют"
                 className="relative rounded-3xl shadow-2xl w-full object-cover"
-                style={{ border: "4px solid rgba(91,63,204,0.3)" }}
+                style={{ border: "4px solid rgba(184,168,224,0.4)" }}
               />
               <div className="absolute -top-4 -right-4 bg-q-yellow text-q-purple rounded-2xl px-4 py-2 font-russo text-sm shadow-lg animate-wiggle">
                 🏆 Топ-школа 2024
@@ -214,7 +214,7 @@ export default function Index() {
       </section>
 
       {/* MARQUEE */}
-      <div className="bg-q-purple py-3 overflow-hidden">
+      <div className="py-3 overflow-hidden" style={{ background: "linear-gradient(135deg, #8b7bb8, #6cbfb0)" }}>
         <div className="animate-marquee flex gap-8 whitespace-nowrap">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-8 shrink-0">
@@ -260,7 +260,7 @@ export default function Index() {
 
       {/* ABOUT */}
       <section id="about" className="py-20 px-4 sm:px-6"
-        style={{ background: "linear-gradient(135deg, #EBE8FF 0%, #D5F5EF 100%)" }}>
+        style={{ background: "linear-gradient(135deg, #f5f0fd 0%, #eaf6f4 100%)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="section-tag mb-6">🏫 О школе</div>
@@ -289,7 +289,7 @@ export default function Index() {
               src="https://cdn.poehali.dev/projects/447cdf21-ede9-440a-b225-e8c4bde91d6f/files/3767cea9-51f0-47d0-9d03-186d2565c731.jpg"
               alt="Обучение в Квантастике"
               className="rounded-3xl shadow-2xl w-full object-cover animate-float2"
-              style={{ border: "4px solid rgba(91,63,204,0.2)" }}
+              style={{ border: "4px solid rgba(184,168,224,0.3)" }}
             />
             <div className="absolute -bottom-6 -right-6 bg-q-yellow rounded-2xl p-4 shadow-xl animate-bounce-in">
               <div className="font-russo text-q-purple text-sm">5 лет опыта</div>
@@ -311,7 +311,7 @@ export default function Index() {
             {TEACHERS.map((t, i) => (
               <div key={i} className="card-hover text-center rounded-3xl p-8 border-2 border-q-light bg-white">
                 <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl mb-4"
-                  style={{ background: "linear-gradient(135deg, #EBE8FF, #D5F5EF)", boxShadow: "0 0 20px rgba(91,63,204,0.2)" }}>
+                  style={{ background: "linear-gradient(135deg, #f0ecfa, #e8f7f5)", boxShadow: "0 0 20px rgba(184,168,224,0.25)" }}>
                   {t.emoji}
                 </div>
                 <div className="font-russo text-q-purple text-base mb-1">{t.name}</div>
@@ -326,37 +326,35 @@ export default function Index() {
       </section>
 
       {/* ACHIEVEMENTS */}
-      <section id="achievements" className="py-20 px-4 sm:px-6 bg-q-purple">
+      <section id="achievements" className="py-20 px-4 sm:px-6"
+        style={{ background: "linear-gradient(135deg, #f0ecfa, #fce4f0, #e8f7f5)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-white/20 text-white rounded-full px-4 py-2 text-sm font-bold mb-4">
-              🏆 Достижения
-            </div>
-            <h2 className="font-russo text-3xl sm:text-4xl text-white mb-4">НАШИ РЕЗУЛЬТАТЫ</h2>
-            <p className="text-white/70 font-semibold">Цифры, которыми мы гордимся</p>
+            <div className="section-tag mb-4 mx-auto w-fit">🏆 Достижения</div>
+            <h2 className="font-russo text-3xl sm:text-4xl text-q-purple mb-4">НАШИ РЕЗУЛЬТАТЫ</h2>
+            <p className="text-gray-500 font-semibold">Цифры, которыми мы гордимся</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {ACHIEVEMENTS.map((a, i) => (
-              <div key={i} className="text-center rounded-3xl p-8"
-                style={{ background: "rgba(255,255,255,0.1)", border: "2px solid rgba(255,255,255,0.2)", backdropFilter: "blur(10px)" }}>
+              <div key={i} className="text-center rounded-3xl p-8 bg-white shadow-sm card-hover">
                 <div className="text-4xl mb-3">{a.emoji}</div>
-                <div className="font-russo text-4xl text-q-yellow mb-2">{a.num}</div>
-                <div className="text-white/80 font-bold">{a.label}</div>
+                <div className="font-russo text-4xl text-q-violet mb-2">{a.num}</div>
+                <div className="text-gray-600 font-bold">{a.label}</div>
               </div>
             ))}
           </div>
-          <div className="bg-white/10 rounded-3xl p-8 border border-white/20">
-            <h3 className="font-russo text-xl text-white text-center mb-8">🏅 Победы на олимпиадах</h3>
+          <div className="bg-white rounded-3xl p-8 shadow-sm">
+            <h3 className="font-russo text-xl text-q-purple text-center mb-8">🏅 Победы на олимпиадах</h3>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
                 ["2023", "🥇 1 место", "Олимпиада «КодFest», г. Москва"],
                 ["2024", "🥈 2 место", "Всероссийская по робототехнике"],
                 ["2024", "🥇 1 место", "Региональный хакатон школьников"],
               ].map(([year, medal, name]) => (
-                <div key={name} className="bg-white/10 rounded-2xl p-4 text-center">
-                  <div className="text-q-yellow font-russo text-sm mb-1">{year}</div>
-                  <div className="text-white font-russo text-lg mb-1">{medal}</div>
-                  <div className="text-white/70 text-xs font-semibold">{name}</div>
+                <div key={name} className="rounded-2xl p-4 text-center" style={{ background: "#f5f0fd" }}>
+                  <div className="text-q-violet font-russo text-sm mb-1">{year}</div>
+                  <div className="text-q-purple font-russo text-lg mb-1">{medal}</div>
+                  <div className="text-gray-500 text-xs font-semibold">{name}</div>
                 </div>
               ))}
             </div>
@@ -414,7 +412,7 @@ export default function Index() {
 
       {/* REVIEWS */}
       <section id="reviews" className="py-20 px-4 sm:px-6"
-        style={{ background: "linear-gradient(135deg, #EBE8FF, #D5F5EF)" }}>
+        style={{ background: "linear-gradient(135deg, #fdf0f5, #f5f0fd)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="section-tag mb-4 mx-auto w-fit">💬 Отзывы</div>
@@ -462,13 +460,13 @@ export default function Index() {
             ))}
           </div>
           <div className="text-center rounded-3xl p-12"
-            style={{ background: "linear-gradient(135deg, #3D2C8D, #5B3FCC)" }}>
-            <h3 className="font-russo text-2xl sm:text-3xl text-white mb-4">🚀 ГОТОВ НАЧАТЬ?</h3>
-            <p className="text-white/80 font-semibold mb-8 max-w-md mx-auto">
+            style={{ background: "linear-gradient(135deg, #e8dff7, #d5eee9)", border: "2px solid rgba(184,168,224,0.3)" }}>
+            <h3 className="font-russo text-2xl sm:text-3xl text-q-purple mb-4">🚀 ГОТОВ НАЧАТЬ?</h3>
+            <p className="text-gray-600 font-semibold mb-8 max-w-md mx-auto">
               Запишись на бесплатное пробное занятие — и твой ребёнок влюбится в программирование!
             </p>
             <button onClick={() => setChatOpen(true)}
-              className="px-10 py-4 bg-q-yellow text-q-purple font-russo text-lg rounded-full shadow-lg hover:scale-105 transition-transform">
+              className="btn-primary px-10 py-4 font-russo text-lg">
               🎮 Записаться бесплатно
             </button>
           </div>
@@ -476,16 +474,16 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-q-purple text-white py-10 px-4 sm:px-6">
+      <footer className="py-10 px-4 sm:px-6" style={{ background: "#f0ecfa" }}>
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🧠</span>
-            <span className="font-russo tracking-wider">КВАНТАСТИКА</span>
+            <span className="font-russo tracking-wider text-q-purple">КВАНТАСТИКА</span>
           </div>
-          <div className="text-white/60 text-sm font-semibold">© 2024 Квантастика. Все права защищены.</div>
+          <div className="text-gray-400 text-sm font-semibold">© 2024 Квантастика. Все права защищены.</div>
           <div className="flex gap-4">
             {["ВКонтакте", "Telegram", "WhatsApp"].map(s => (
-              <a key={s} href="#" className="text-white/60 hover:text-q-yellow transition-colors text-sm font-bold">{s}</a>
+              <a key={s} href="#" className="text-gray-400 hover:text-q-violet transition-colors text-sm font-bold">{s}</a>
             ))}
           </div>
         </div>
@@ -495,7 +493,7 @@ export default function Index() {
       <button
         onClick={() => setChatOpen(true)}
         className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full text-white shadow-2xl flex items-center justify-center text-2xl animate-chat-bounce"
-        style={{ background: "linear-gradient(135deg, #5B3FCC, #1DB8A0)", boxShadow: "0 0 25px rgba(91,63,204,0.5)" }}
+        style={{ background: "linear-gradient(135deg, #b8a8e0, #8ed4c8)", boxShadow: "0 0 25px rgba(184,168,224,0.5)" }}
         title="Задать вопрос">
         💬
       </button>
@@ -507,7 +505,7 @@ export default function Index() {
           onClick={e => e.target === e.currentTarget && setChatOpen(false)}>
           <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl animate-slide-up overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4"
-              style={{ background: "linear-gradient(135deg, #3D2C8D, #5B3FCC)" }}>
+              style={{ background: "linear-gradient(135deg, #8b7bb8, #b8a8e0)" }}>
               <div className="flex items-center gap-3">
                 <span className="text-2xl">💬</span>
                 <div>
