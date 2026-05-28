@@ -839,7 +839,8 @@ export default function Index() {
                       <div className="flex gap-3">
                         <button
                           onClick={() => { if (grantForm.fio && grantForm.dob && grantForm.location) setGrantDone(true); }}
-                          className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center">
+                          disabled={!grantForm.fio || !grantForm.dob || !grantForm.location}
+                          className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center disabled:opacity-40 disabled:cursor-not-allowed">
                           ПОДТВЕРДИТЬ <Icon name="Check" size={14} />
                         </button>
                         <button onClick={() => setGrantOpen(false)}
