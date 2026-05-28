@@ -115,6 +115,9 @@ export default function Index() {
   const [checkOpen, setCheckOpen] = useState(false);
   const [checkForm, setCheckForm] = useState({ region: "", city: "", school: "" });
   const [checkSent, setCheckSent] = useState(false);
+  const [grantOpen, setGrantOpen] = useState(false);
+  const [grantForm, setGrantForm] = useState({ fio: "", dob: "", location: "" });
+  const [grantDone, setGrantDone] = useState(false);
 
   const handleCheckSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -751,16 +754,101 @@ export default function Index() {
                     </p>
                   </div>
 
-                  <div className="flex gap-3">
-                    <button onClick={() => { setChatOpen(true); setCheckOpen(false); setCheckSent(false); }}
-                      className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center">
-                      ЗАПИСАТЬСЯ <Icon name="ArrowUpRight" size={14} />
-                    </button>
-                    <button onClick={() => { setCheckSent(false); setCheckForm({ region: "", city: "", school: "" }); }}
-                      className="btn-outline px-5 py-3.5 text-sm tracking-wider">
-                      ← НАЗАД
-                    </button>
-                  </div>
+                  {!grantOpen ? (
+                    <div className="flex gap-3">
+                      <button onClick={() => { setGrantOpen(true); setGrantDone(false); setGrantForm({ fio: "", dob: "", location: "" }); }}
+                        className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center">
+                        ВЫДЕЛИТЬ ГРАНТ УЧЕНИКУ <Icon name="Gift" size={14} />
+                      </button>
+                      <button onClick={() => { setCheckSent(false); setCheckForm({ region: "", city: "", school: "" }); }}
+                        className="btn-outline px-5 py-3.5 text-sm tracking-wider">
+                        ← НАЗАД
+                      </button>
+                    </div>
+                  ) : grantDone ? (
+                    <div className="p-5 animate-bounce-in" style={{ background: "rgba(61,255,208,0.07)", border: "1px solid rgba(61,255,208,0.35)" }}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span style={{ fontSize: 28 }}>✅</span>
+                        <div className="font-russo text-base text-white">Грант успешно применён!</div>
+                      </div>
+                      <div className="space-y-2 mb-5">
+                        <div className="flex gap-2">
+                          <span className="font-nunito text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)", minWidth: 100 }}>ФИО</span>
+                          <span className="font-nunito text-sm font-semibold text-white">{grantForm.fio}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <span className="font-nunito text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)", minWidth: 100 }}>Дата рожд.</span>
+                          <span className="font-nunito text-sm font-semibold text-white">{grantForm.dob}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <span className="font-nunito text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)", minWidth: 100 }}>Школа</span>
+                          <span className="font-nunito text-sm font-semibold text-white">{grantForm.location}</span>
+                        </div>
+                      </div>
+                      <p className="font-nunito text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        Льготное место закреплено за учеником. Наш менеджер свяжется для оформления в ближайшее время.
+                      </p>
+                      <button onClick={() => { setGrantOpen(false); setGrantDone(false); setCheckSent(false); setCheckOpen(false); setCheckForm({ region: "", city: "", school: "" }); }}
+                        className="btn-outline w-full mt-4 py-3 text-sm tracking-wider">
+                        ЗАКРЫТЬ
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="animate-bounce-in">
+                      <div className="font-nunito text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(255,214,0,0.7)" }}>
+                        Данные ученика
+                      </div>
+                      <div className="space-y-4 mb-5">
+                        <div>
+                          <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+                            ФИО ученика <span style={{ color: "var(--q-yellow)" }}>*</span>
+                          </label>
+                          <input type="text" required placeholder="Иванов Иван Иванович"
+                            value={grantForm.fio}
+                            onChange={e => setGrantForm(p => ({ ...p, fio: e.target.value }))}
+                            className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors placeholder:text-white/25"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0 }}
+                            onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                            onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")} />
+                        </div>
+                        <div>
+                          <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+                            Дата рождения <span style={{ color: "var(--q-yellow)" }}>*</span>
+                          </label>
+                          <input type="date" required
+                            value={grantForm.dob}
+                            onChange={e => setGrantForm(p => ({ ...p, dob: e.target.value }))}
+                            className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0, colorScheme: "dark" }}
+                            onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                            onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")} />
+                        </div>
+                        <div>
+                          <label className="block font-nunito text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+                            Область, нас. пункт, № / название школы <span style={{ color: "var(--q-yellow)" }}>*</span>
+                          </label>
+                          <input type="text" required placeholder="Москва, г. Видное, школа № 5"
+                            value={grantForm.location}
+                            onChange={e => setGrantForm(p => ({ ...p, location: e.target.value }))}
+                            className="w-full px-5 py-4 font-nunito font-semibold text-base text-white outline-none transition-colors placeholder:text-white/25"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 0 }}
+                            onFocus={e => (e.target.style.borderColor = "rgba(255,214,0,0.7)")}
+                            onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")} />
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => { if (grantForm.fio && grantForm.dob && grantForm.location) setGrantDone(true); }}
+                          className="btn-primary flex-1 py-3.5 text-sm tracking-widest justify-center">
+                          ПОДТВЕРДИТЬ <Icon name="Check" size={14} />
+                        </button>
+                        <button onClick={() => setGrantOpen(false)}
+                          className="btn-outline px-5 py-3.5 text-sm tracking-wider">
+                          ← НАЗАД
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <form onSubmit={handleCheckSubmit} className="space-y-5">
